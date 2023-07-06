@@ -15,8 +15,8 @@ public class App {
 				new Product(546456, "Social media", "Books", 350.25),
 				new Product(546456, "Il piccolo principe", "Books", 30.40),
 				new Product(651651, "Giacca", "Boys", 450.10), new Product(665165, "Cravatta", "Boys", 125.40),
-				new Product(656151, "Pannolini", "Baby", 12.50), new Product(651451, "Passeggino", "Baby", 500.12),
-				new Product(515611, "Ballatoio", "Baby", 350.14)));
+				new Product(665165, "Scarpe", "Boys", 300.40), new Product(656151, "Pannolini", "Baby", 12.50),
+				new Product(651451, "Passeggino", "Baby", 500.12), new Product(515611, "Ballatoio", "Baby", 350.14)));
 
 		System.out.println("--------- Lista libri --------");
 		System.out.println();
@@ -48,6 +48,17 @@ public class App {
 		ordini.forEach(
 				s -> System.out.println("Id: " + s.getId() + ", " + "status: " + s.getStatus() + ", " + "Data ordine "
 						+ s.getOrderDate() + ", " + "Data consegna: " + s.getDeliveryDate() + ", " + s.getProducts()));
+		System.out.println();
+		System.out.println("--------- Lista Boys --------");
+		Predicate<Product> isBoysCategory = p -> p.getCategory().equals("Boys");
+		List<Product> listaBoys = lista.stream().filter(isBoysCategory).toList();
+		for (Product product : listaBoys) {
+			double sconto = product.getPrice() - (product.getPrice() * 0.1);
+			product.setPrice(sconto);
+			System.out.println("Id: " + product.getId() + " " + "nome articolo: " + product.getName() + " "
+					+ "categoria: " + product.getCategory() + " " + "prezzo: " + product.getPrice());
+
+		}
 
 	}
 
